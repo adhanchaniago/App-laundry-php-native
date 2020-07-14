@@ -29,6 +29,20 @@ $aksi = @$_GET['aksi'];
              } else if($aksi == 'ubah') {
                 echo "Ubah Data Pelanggan";
              }   
+            } else if($page == 'pengguna') {
+                if($aksi == '') {
+                    echo "Halaman Pengguna";
+                } else if($aksi == 'tambah') {
+                    echo "Tambah Data Pelanggan";
+                } else if($aksi == 'ubah') {
+                    echo "Ubah Data Pelanggan";
+                }
+            } else if($page == 'laundry') {
+                if($aksi == '') {
+                    echo "Halaman Laundry";
+                } else if($aksi == 'tambah') {
+                    echo "Tambah Data Laundry";
+                }
             } else {
                 echo "Dashboard | Laundry";
             }

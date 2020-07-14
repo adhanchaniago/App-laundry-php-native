@@ -98,6 +98,10 @@ if(isset($_POST['login'])) {
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">
+                                        <div class="alert alert-primary" role="alert">
+                                          User : admin/admin<br>
+                                          Kasir : kasir/kasir1
+                                        </div>
                                         <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
                                     </div>
                                 </div>

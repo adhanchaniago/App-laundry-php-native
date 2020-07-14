@@ -8,6 +8,8 @@ if($_SESSION['admin']) {
 // var_dump($user);
 $sql = $koneksi->query("SELECT * FROM tb_user WHERE id_user = $user") or die(mysqli_error($koneksi));
 $data = $sql->fetch_assoc();
+$id_user = $data['id_user'];
+// echo $id_user;
 // echo $nama = $data['foto'];
 
 if($page == 'pelanggan') {
@@ -19,6 +21,24 @@ if($page == 'pelanggan') {
 		require_once 'page/pelanggan/ubah.php';
 	} else if($aksi == 'hapus') {
 		require_once 'page/pelanggan/hapus.php';
+	}
+} else if($page == 'pengguna') {
+	if($aksi == '') {
+		require_once 'page/pengguna/pengguna.php';
+	} else if($aksi == 'tambah') {
+		require_once 'page/pengguna/tambah.php';
+	} else if($aksi == 'ubah') {
+		require_once 'page/pengguna/ubah.php';
+	} else if($aksi == 'hapus') {
+		require_once 'page/pengguna/hapus.php';
+	}
+} else if($page == 'laundry') {
+	if($aksi == '') {
+		require_once 'page/laundry/laundry.php';
+	} else if($aksi == 'tambah') {
+		require_once 'page/laundry/tambah.php';
+	} else if($aksi == 'lunas') {
+		require_once 'page/laundry/lunas.php';
 	}
 } else { ?>
 	<h1 class='mt-4'>Dashboard</h1><ol class='breadcrumb mb-4'><li class='breadcrumb-item'><a href='index.php'>Dashboard</a></li><li class='breadcrumb-item active'>Static Navigation</li></ol>
