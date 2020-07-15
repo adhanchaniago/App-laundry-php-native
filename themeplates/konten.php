@@ -5,6 +5,22 @@ if($_SESSION['admin']) {
 } else if($_SESSION['kasir']) {
 	$user = $_SESSION['kasir']['id_user'];
 }
+
+
+// menampilkan angka data di halaman dashboard
+$pengguna = $koneksi->query("SELECT * FROM tb_user") or die(mysqli_error($koneksi));
+$dataPengguna = $pengguna->num_rows;
+
+$pelanggan = $koneksi->query("SELECT * FROM tb_pelanggan") or die(mysqli_error($koneksi));
+$dataPelanggan = $pelanggan->num_rows;
+
+$laundry = $koneksi->query("SELECT * FROM tb_tranlaundry") or die(mysqli_error($koneksi));
+$dataLaundry = $laundry->num_rows;
+
+$transaksi = $koneksi->query("SELECT * FROM tb_transaksi") or die(mysqli_error($koneksi));
+$dataTransaksi = $transaksi->num_rows;
+
+
 // var_dump($user);
 $sql = $koneksi->query("SELECT * FROM tb_user WHERE id_user = $user") or die(mysqli_error($koneksi));
 $data = $sql->fetch_assoc();
@@ -40,6 +56,12 @@ if($page == 'pelanggan') {
 	} else if($aksi == 'lunas') {
 		require_once 'page/laundry/lunas.php';
 	}
+} else if($page == 'transaksi') {
+	if($aksi == '') {
+		require_once 'page/transaksi/transaksi.php';
+	} else if($aksi == 'tambah') {
+		require_once 'page/transaksi/tambah.php';
+	}
 } else { ?>
 	<h1 class='mt-4'>Dashboard</h1><ol class='breadcrumb mb-4'><li class='breadcrumb-item'><a href='index.php'>Dashboard</a></li><li class='breadcrumb-item active'>Static Navigation</li></ol>
 	<div class="card">
@@ -47,6 +69,54 @@ if($page == 'pelanggan') {
     <img src="./img/<?= $data['foto']; ?>" class="rounded-circle shadow">
     <p style="display: inline;">Halo, anda sedang login sebagai,<b> <?= $data['username']; ?></b></p>
   </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-primary text-white mb-4">
+            <div class="card-body"><i class="fa fa-user float-right"></i>Pengguna<h3><?= $dataPengguna ?></h3>
+            </div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+            	<?php if($_SESSION['admin']['level'] === 'admin') : ?>
+                <a class="small text-white stretched-link" href="?p=pengguna">View Details</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+              <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-warning text-white mb-4">
+            <div class="card-body"><i class="fa fa-users float-right"></i>Pelanggan<h3><?= $dataPelanggan ?></h3></div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+            	<?php if($_SESSION['admin']['level'] === 'admin') : ?>
+                <a class="small text-white stretched-link" href="?p=pelanggan">View Details</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+              <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-success text-white mb-4">
+            <div class="card-body"><i class="fa fa-handshake float-right" aria-hidden="true"></i>Transaksi Laundry<h3><?= $dataLaundry ?></h3></div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+            	<?php if($_SESSION['admin']['level'] === 'admin') : ?>
+                <a class="small text-white stretched-link" href="?p=laundry">View Details</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+              <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-danger text-white mb-4">
+            <div class="card-body"><i class="fa fa-credit-card float-right"></i>Transaksi<h3><?= $dataTransaksi ?></h3></div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+            	<?php if($_SESSION['admin']['level'] === 'admin') : ?>
+                <a class="small text-white stretched-link" href="?p=transaksi">View Details</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+              <?php endif; ?>
+            </div>
+        </div>
+    </div>
 </div>
 	
 <?php

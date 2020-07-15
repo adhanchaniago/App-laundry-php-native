@@ -8,6 +8,8 @@
                     Dashboard
                 </a>
                 <div class="sb-sidenav-menu-heading">Data Laundry</div>
+
+                <?php if($_SESSION['admin']['level'] ==='admin') : ?>
                 <a class="nav-link" href="?p=pengguna">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Pengguna
@@ -16,19 +18,24 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Pelanggan
                 </a>
+                <?php endif; ?>
+
                 <a class="nav-link" href="?p=laundry">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Transaksi Laundry
                 </a>
-                <a class="nav-link" href="?p=keluar">
+
+                <?php if($_SESSION['admin']['level'] === 'admin') : ?>
+                <a class="nav-link" href="?p=transaksi">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Transaksi Pengeluaran
                 </a>
+                <?php endif; ?>
             </div>
         </div>
         <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-            Start Bootstrap
+            <div class="small">Masuk Sebagai:</div>
+            <?= $_SESSION['admin']['username']; ?>
         </div>
     </nav>
 </div>

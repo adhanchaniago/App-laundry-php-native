@@ -43,6 +43,12 @@ $aksi = @$_GET['aksi'];
                 } else if($aksi == 'tambah') {
                     echo "Tambah Data Laundry";
                 }
+            } else if($page == 'transaksi') {
+                if($aksi == '') {
+                    echo "Halaman Transaksi Pengeluaran";
+                } else if($aksi == 'tambah') {
+                    echo "Tambah Transaksi Pengeluaran";
+                }
             } else {
                 echo "Dashboard | Laundry";
             }
@@ -63,17 +69,17 @@ $aksi = @$_GET['aksi'];
             <!-- ----------- END Menu-------- -->
 
             <div id="layoutSidenav_content">
+                <button class="btn btn-danger"><marquee behavior="scroll">Selamat Datang <b>
+                    <?php 
+                    if(isset($_SESSION['admin'])) {
+                        echo $_SESSION['admin']['username'];
+                    } else {
+                        echo $_SESSION['kasir']['username'];
+                    }
+                    ?> 
+                </b>Di Website Laundry Sederhana.</marquee></button>
                 <main>
                     <div class="container-fluid">
-                        <button class="btn btn-danger"><marquee behavior="scroll">Selamat Datang <b>
-                            <?php 
-                            if(isset($_SESSION['admin'])) {
-                                echo $_SESSION['admin']['username'];
-                            } else {
-                                echo $_SESSION['kasir']['username'];
-                            }
-                            ?> 
-                        </b>Di Website Laundry Sederhana.</marquee></button>
                         <!-- <h1 class="mt-4">Static Navigation</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>

@@ -52,6 +52,7 @@ or die(mysqli_error($koneksi));
                                 <?php if($tTP['status'] == 'Belum Lunas') : ?>
                                 <a href="?p=laundry&aksi=lunas&id=<?= $tTP['id_tranlaundry']; ?>" class="btn btn-success btn-sm">Bayar</a>
                                 <?php endif; ?>
+                                <a href="page/laundry/cetak.php?id=<?= $tTP['id_tranlaundry']; ?>" class="btn btn-secondary btn-sm" target="_blank"><i class="fa fa-print"></i></a>
                 			</td>
                 		</tr>
                 	<?php endforeach; ?>
